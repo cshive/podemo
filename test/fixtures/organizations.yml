@@ -7,6 +7,7 @@
 #  identifier :string(255)
 #  created_at :datetime
 #  updated_at :datetime
+#  address1   :string(255)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
