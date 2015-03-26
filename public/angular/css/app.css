@@ -1,0 +1,42 @@
+		div{
+			float:left;
+			font: 1em verdana, sans-serif;
+		}
+		
+		.label{
+			float:left;
+			width:200px;
+			font-weight:bold;
+		}
+		.value{
+			float:left;
+			width:400px;		
+		}
+		.container{
+			float:left;
+			clear:both;
+			width:800px;
+			margin-bottom:20px;
+		}
+		.container div{
+			
+		}
+    .odd {
+        background-color: lightblue;
+    }
+
+    .even {
+        background-color: lightgray;
+    }		
+	#buttonBar{
+		clear:both;
+		float:right;
+		font-weight:bold;	
+		
+	}
+	input{
+		width:800px;
+	}
+	.button{
+		width:60px;
+	}
