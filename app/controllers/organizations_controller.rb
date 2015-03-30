@@ -4,7 +4,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations
   # GET /organizations.json
   def index
-    @organizations = Organization.all
+    @organizations = Organization.sall
   end
 
   # GET /organizations/1
