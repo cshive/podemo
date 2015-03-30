@@ -40,3 +40,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
 gem 'annotate'
 gem 'coffee-script-source', '1.8.0'
+gem 'rails_admin'
+gem 'ci_reporter_minitest'
