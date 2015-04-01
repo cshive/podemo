@@ -1,3 +1,8 @@
+<% if user_signed_in? %>
+    <li><%= link_to 'Edit account', edit_user_registration_path %></li>
+    <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
+<% end %>
+
 <h1>Listing organizations | <a href="/angular/">Jump to Angular view</a></h1>
 
 <table>
