@@ -3,6 +3,8 @@
     <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
 <% end %>
 
+<p id="notice"><%= notice %></p>
+
 <h1>Listing organizations | <a href="/angular/">Jump to Angular view</a></h1>
 
 <table>
@@ -29,4 +31,5 @@
 
 <br>
 
-<%= link_to 'New Organization', new_organization_path %>
+<%= link_to 'New Organization', new_organization_path %><br>
+<%= link_to 'New Organization from REST API', create_from_rest_api_organizations_path, :method => :post %>

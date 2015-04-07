@@ -62,6 +62,23 @@ class OrganizationsController < ApplicationController
     end
   end
 
+  def create_from_rest_api
+    conn = Faraday.new(:url => 'https://www.broadinstitute.org') do |faraday|
+      faraday.request :url_encoded              # form-encode POST params
+      faraday.response :logger                  # log requests to STDOUT
+      faraday.adapter Faraday.default_adapter   # make requests with Net::HTTP
+    end
+    # username and password
+    conn.basic_auth('', '')
+    response = conn.get '/portal/GTEx/ws/portals/private/get_gtex_donor_data', { :donor_name => 'GTEX-000007' }
+
+    # Parsing XML and create new Organization
+    xml = Nokogiri::XML(response.body)
+    Organization.create(name: 'REST API', identifier: xml.xpath('//donor').attr('privateDonorID').value)
+
+    redirect_to :back, notice: 'HTTP response status: ' + response.status.to_s
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_organization
