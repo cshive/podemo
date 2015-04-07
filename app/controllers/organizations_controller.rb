@@ -73,8 +73,10 @@ class OrganizationsController < ApplicationController
     response = conn.get '/portal/GTEx/ws/portals/private/get_gtex_donor_data', { :donor_name => 'GTEX-000007' }
 
     # Parsing XML and create new Organization
-    xml = Nokogiri::XML(response.body)
-    Organization.create(name: 'REST API', identifier: xml.xpath('//donor').attr('privateDonorID').value)
+    if response.status == 200
+      xml = Nokogiri::XML(response.body)
+      Organization.create(name: 'REST API', identifier: xml.xpath('//donor').attr('privateDonorID').value)
+    end
 
     redirect_to :back, notice: 'HTTP response status: ' + response.status.to_s
   end
