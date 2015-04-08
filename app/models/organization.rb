@@ -11,4 +11,5 @@
 #
 
 class Organization < ActiveRecord::Base
+  validates :name, uniqueness: true
 end
