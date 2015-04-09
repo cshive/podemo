@@ -1,0 +1,29 @@
+<h1>Listing organization_statuses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Code</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @organization_statuses.each do |organization_status| %>
+      <tr>
+        <td><%= organization_status.name %></td>
+        <td><%= organization_status.code %></td>
+        <td><%= link_to 'Show', organization_status %></td>
+        <td><%= link_to 'Edit', edit_organization_status_path(organization_status) %></td>
+        <td><%= link_to 'Destroy', organization_status, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Organization status', new_organization_status_path %>
+<br><br>
+<%= link_to 'Organizations', organizations_path  %>

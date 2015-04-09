@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @organization_status.name %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @organization_status.code %>
+</p>
+
+<%= link_to 'Edit', edit_organization_status_path(@organization_status) %> |
+<%= link_to 'Back', organization_statuses_path %>

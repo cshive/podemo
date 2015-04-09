@@ -19,3 +19,6 @@ user.save
 OrganizationType.create(name: 'Lead Organization', code: 'LEAD')
 OrganizationType.create(name: 'Participant Site', code: 'PART')
 OrganizationType.create(name: 'Sponsor', code: 'SPONSOR')
+
+OrganizationStatus.create(name: 'Pending', code: 'PENDING')
+OrganizationStatus.create(name: 'Active', code: 'ACTIVE')

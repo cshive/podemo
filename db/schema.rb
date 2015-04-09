@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150408173540) do
+ActiveRecord::Schema.define(version: 20150409152858) do
+
+  create_table "organization_statuses", force: true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "organization_types", force: true do |t|
     t.string   "name"
@@ -27,8 +34,10 @@ ActiveRecord::Schema.define(version: 20150408173540) do
     t.datetime "updated_at"
     t.string   "address1"
     t.integer  "organization_type_id"
+    t.integer  "organization_status_id"
   end
 
+  add_index "organizations", ["organization_status_id"], name: "index_organizations_on_organization_status_id"
   add_index "organizations", ["organization_type_id"], name: "index_organizations_on_organization_type_id"
 
   create_table "users", force: true do |t|
