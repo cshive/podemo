@@ -13,26 +13,26 @@
 
 ActiveRecord::Schema.define(version: 20150409152858) do
 
-  create_table "organization_statuses", force: true do |t|
-    t.string   "name"
-    t.string   "code"
+  create_table "organization_statuses", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "code",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "organization_types", force: true do |t|
-    t.string   "name"
-    t.string   "code"
+  create_table "organization_types", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "code",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "organizations", force: true do |t|
-    t.string   "name"
-    t.string   "identifier"
+  create_table "organizations", force: :cascade do |t|
+    t.string   "name",                   limit: 255
+    t.string   "identifier",             limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "address1"
+    t.string   "address1",               limit: 255
     t.integer  "organization_type_id"
     t.integer  "organization_status_id"
   end
@@ -40,27 +40,27 @@ ActiveRecord::Schema.define(version: 20150409152858) do
   add_index "organizations", ["organization_status_id"], name: "index_organizations_on_organization_status_id"
   add_index "organizations", ["organization_type_id"], name: "index_organizations_on_organization_type_id"
 
-  create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "confirmation_token",     limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
-    t.integer  "failed_attempts",        default: 0,  null: false
-    t.string   "unlock_token"
+    t.string   "unconfirmed_email",      limit: 255
+    t.integer  "failed_attempts",                    default: 0,  null: false
+    t.string   "unlock_token",           limit: 255
     t.datetime "locked_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "provider"
-    t.string   "uid"
+    t.string   "provider",               limit: 255
+    t.string   "uid",                    limit: 255
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
