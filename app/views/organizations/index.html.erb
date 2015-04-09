@@ -12,6 +12,7 @@
     <tr>
       <th>Name</th>
       <th>Identifier</th>
+      <th>Organization Type</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,6 +22,7 @@
       <tr>
         <td><%= organization.name %></td>
         <td><%= organization.identifier %></td>
+        <td><%= organization.organization_type.name if organization.organization_type %></td>
         <td><%= link_to 'Show', organization %></td>
         <td><%= link_to 'Edit', edit_organization_path(organization) %></td>
         <td><%= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -33,3 +35,5 @@
 
 <%= link_to 'New Organization', new_organization_path %><br>
 <%= link_to 'New Organization from REST API', create_from_rest_api_organizations_path, :method => :post %>
+<br><br>
+<%= link_to 'Organization Types', organization_types_path  %>

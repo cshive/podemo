@@ -19,6 +19,10 @@
     <%= f.label :identifier %><br>
     <%= f.text_field :identifier %>
   </div>
+  <div class="field">
+    <%= f.label :organization_type_id %><br>
+    <%= f.collection_select :organization_type_id, OrganizationType.order(:name), :id, :name, include_blank: true %>
+  </div>
   <div>
     <%= f.label :address1 %><br>
     <%= f.text_field :address1 %>

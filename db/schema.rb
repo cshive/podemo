@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150330195447) do
+ActiveRecord::Schema.define(version: 20150408173540) do
+
+  create_table "organization_types", force: true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "organizations", force: true do |t|
     t.string   "name"
@@ -19,7 +26,10 @@ ActiveRecord::Schema.define(version: 20150330195447) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "address1"
+    t.integer  "organization_type_id"
   end
+
+  add_index "organizations", ["organization_type_id"], name: "index_organizations_on_organization_type_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

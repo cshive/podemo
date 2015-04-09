@@ -14,4 +14,8 @@ user = User.new(email: 'test@test.com',
                 password_confirmation: 'Welcome01'
                )
 user.skip_confirmation!
-user.save!
+user.save
+
+OrganizationType.create(name: 'Lead Organization', code: 'LEAD')
+OrganizationType.create(name: 'Participant Site', code: 'PART')
+OrganizationType.create(name: 'Sponsor', code: 'SPONSOR')
