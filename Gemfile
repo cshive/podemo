@@ -45,3 +45,11 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'rails_admin'
 gem 'ci_reporter_minitest'
+
+group :test do
+  gem 'cucumber-rails', :require => false
+  # database_cleaner is not required, but highly recommended
+  gem 'database_cleaner'
+end
+
+gem 'selenium-webdriver'
