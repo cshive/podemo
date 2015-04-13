@@ -6,5 +6,7 @@ driver = Selenium::WebDriver.for :chrome
 driver.get "http://localhost:3000"
 driver = Selenium::WebDriver.for :firefox
 driver.get "http://localhost:3000"
+driver = Selenium::WebDriver.for :safari
+driver.get "http://localhost:3000"
 
 end
