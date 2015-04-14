@@ -27,7 +27,7 @@
       <%= f.label :organization_status_id %><br>
       <%= f.collection_select :organization_status_id, OrganizationStatus.order(:name), :id, :name, include_blank: true %>
     </div>
-  <div>
+  <div class="field">
     <%= f.label :address1 %><br>
     <%= f.text_field :address1 %>
   </div>
