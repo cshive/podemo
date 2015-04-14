@@ -63,14 +63,14 @@ class OrganizationsController < ApplicationController
   end
 
   def create_from_rest_api
-    conn = Faraday.new(:url => 'https://www.broadinstitute.org') do |faraday|
+    conn = Faraday.new(url: 'https://www.broadinstitute.org') do |faraday|
       faraday.request :url_encoded              # form-encode POST params
       faraday.response :logger                  # log requests to STDOUT
       faraday.adapter Faraday.default_adapter   # make requests with Net::HTTP
     end
     # username and password
     conn.basic_auth('', '')
-    response = conn.get '/portal/GTEx/ws/portals/private/get_gtex_donor_data', { :donor_name => 'GTEX-000007' }
+    response = conn.get '/portal/GTEx/ws/portals/private/get_gtex_donor_data', { donor_name: 'GTEX-000007' }
 
     # Parsing XML and create new Organization
     if response.status == 200
