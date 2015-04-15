@@ -22,28 +22,17 @@
 	</div>
 	<div>
 		  <div class="label">Organization Type:</div>
-		  <div class="value"><input type="text" readonly="true" style="width:160px;" ng-model="org.orgType.name">
-
-			<select ng-model="org.orgType" ng-options="orgType as orgType.name for orgType in orgTypes">
-				<option value="">Change Org Type >></option>
-			</select>		  
-			<!--		  
-			<select ng-model="org.orgType">
-				<option ng:repeat="orgType in orgTypes" value="{{orgType.id}}">{{orgType.name}}</option>
-			</select>		  
-
-
-			<select ng-model="org.orgType" ng-options="orgType as orgType.Name for orgType in orgTypes">
-				<option value="">Select Org Type</option>
-			</select>			
-			-->
+		  <div class="value">
+			<select ng-model="org.organization_type_id" ng-options="orgType.id as orgType.name for orgType in org.orgTypes">
+				<option value=""></option>
+			</select>
 		  </div>
 	</div>
 	<div>
 		<div class="label">Organization Status:</div>		
-		<div class="value"><input type="text" readonly="true" style="width:160px;" ng-model="org.orgStatus.name">
-			<select ng-model="org.orgStatus" ng-options="orgStatus as orgStatus.name for orgStatus in orgStatuses">
-				<option value="">Change Org Status >></option>
+		<div class="value">
+			<select ng-model="org.organization_status_id" ng-options="orgStatus.id as orgStatus.name for orgStatus in org.orgStatuses">
+				<option value=""></option>
 			</select>			
 		</div>
 	</div>	
