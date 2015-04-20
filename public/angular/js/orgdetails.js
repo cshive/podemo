@@ -71,15 +71,32 @@
         };
 
 		$scope.postedpayload = angular.copy(org);
-        if(org.id){
-		    $http.put("/organizations/", org).success(function(resp, status) {
-    			$scope.remoteresponse = status;
-	        })
-        }
-        else{
-            $http.post("/organizations/", org).success(function(resp, status) {
-                $scope.remoteresponse = status;
-            })
+        if (org.id) {
+		    $http.put("/organizations/" + org.id + ".json", org)
+				.success(function(resp, status) {
+					$scope.remoteresponse = status;
+				})
+				.error(function(resp, status) {
+					for (var key in resp) {
+						if (resp.hasOwnProperty(key)) {
+							alert(key + " " + resp[key]);
+						}
+					}
+					$scope.remoteresponse = status;
+				});
+        } else {
+            $http.post("/organizations.json", org)
+				.success(function(resp, status) {
+					$scope.remoteresponse = status;
+				})
+				.error(function(resp, status) {
+					for (var key in resp) {
+						if (resp.hasOwnProperty(key)) {
+							alert(key + " " + resp[key]);
+						}
+					}
+					$scope.remoteresponse = status;
+				});
         }
 	}
 }]);
