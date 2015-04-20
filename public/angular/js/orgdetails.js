@@ -34,22 +34,29 @@
 		  // log error
 		});		
 */
-	  $http.get('/organizations/' + $scope.param + '.json').
-		success(function(data, status, headers, config) {
-		  $scope.org = data;
-		  $scope.selectedOrgType = $scope.org.orgType;		
-		  $scope.selectedOrgStatus = $scope.org.orgStatus;				  
-		//alert($scope.selectedOrgType.id)		  
+		if ($scope.param) {
+			$http.get('/organizations/' + $scope.param + '.json').
+				success(function (data, status, headers, config) {
+					$scope.org = data;
+					$scope.selectedOrgType = $scope.org.orgType;
+					$scope.selectedOrgStatus = $scope.org.orgStatus;
+					//alert($scope.selectedOrgType.id)
 
-		}).
-		error(function(data, status, headers, config, window) {
-			if(status == '401'){
-				//$window.location.href = 'http://localhost/poDemo/login/auth'
-			}
-			else{
-				return true;
-			}
-		});
+				}).
+				error(function (data, status, headers, config, window) {
+					if (status == '401') {
+						//$window.location.href = 'http://localhost/poDemo/login/auth'
+					}
+					else {
+						return true;
+					}
+				});
+		} else {
+			$http.get('/organizations/new.json')
+				.success(function(data) {
+					$scope.org = data;
+				});
+		}
 	}	  
 	$scope.load();  
 	

@@ -1,5 +1,5 @@
 GEM
-  remote: https://rubygems.org/
+  remote: https://ncimvn.nci.nih.gov/nexus/content/repositories/rubygems-org/
   specs:
     actionmailer (4.2.0)
       actionpack (= 4.2.0)

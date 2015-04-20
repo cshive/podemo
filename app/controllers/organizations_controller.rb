@@ -16,6 +16,10 @@ class OrganizationsController < ApplicationController
   # GET /organizations/new
   def new
     @organization = Organization.new
+    respond_to do |format|
+      format.html { render :new }
+      format.json { render :show }
+    end
   end
 
   # GET /organizations/1/edit
