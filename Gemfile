@@ -1,5 +1,5 @@
-source 'https://rubygems.org'
-
+source 'https://ncimvn.nci.nih.gov/nexus/content/repositories/rubygems-org/'
+#source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
