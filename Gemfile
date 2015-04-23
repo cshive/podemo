@@ -53,3 +53,4 @@ group :test do
 end
 
 gem 'selenium-webdriver'
+gem "devise_ldap_authenticatable"
