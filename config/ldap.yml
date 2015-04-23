@@ -27,7 +27,7 @@ development:
   attribute: sAMAccountName
   base: OU=NIH,OU=AD,DC=nih,DC=gov
   admin_user: CN=cahubldapt,OU=ServiceAccounts,OU=OPS,OU=NCI-Frederick,OU=NIH,OU=AD,DC=nih,DC=gov
-  admin_password:
+  admin_password: xxx
   ssl: false
   # <<: *AUTHORIZATIONS
 
