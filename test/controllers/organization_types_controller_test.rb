@@ -3,6 +3,7 @@ require 'test_helper'
 class OrganizationTypesControllerTest < ActionController::TestCase
   setup do
     @organization_type = organization_types(:one)
+    @organization_type.code = 'unique code'
   end
 
   test "should get index" do

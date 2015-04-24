@@ -1,4 +1,5 @@
 class OrganizationsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user! unless Rails.env.test?
 
@@ -16,6 +17,10 @@ class OrganizationsController < ApplicationController
   # GET /organizations/new
   def new
     @organization = Organization.new
+    respond_to do |format|
+      format.html { render :new }
+      format.json { render :show }
+    end
   end
 
   # GET /organizations/1/edit

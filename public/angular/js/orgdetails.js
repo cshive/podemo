@@ -34,22 +34,29 @@
 		  // log error
 		});		
 */
-	  $http.get('/organizations/' + $scope.param + '.json').
-		success(function(data, status, headers, config) {
-		  $scope.org = data;
-		  $scope.selectedOrgType = $scope.org.orgType;		
-		  $scope.selectedOrgStatus = $scope.org.orgStatus;				  
-		//alert($scope.selectedOrgType.id)		  
+		if ($scope.param) {
+			$http.get('/organizations/' + $scope.param + '.json').
+				success(function (data, status, headers, config) {
+					$scope.org = data;
+					$scope.selectedOrgType = $scope.org.orgType;
+					$scope.selectedOrgStatus = $scope.org.orgStatus;
+					//alert($scope.selectedOrgType.id)
 
-		}).
-		error(function(data, status, headers, config, window) {
-			if(status == '401'){
-				//$window.location.href = 'http://localhost/poDemo/login/auth'
-			}
-			else{
-				return true;
-			}
-		});
+				}).
+				error(function (data, status, headers, config, window) {
+					if (status == '401') {
+						//$window.location.href = 'http://localhost/poDemo/login/auth'
+					}
+					else {
+						return true;
+					}
+				});
+		} else {
+			$http.get('/organizations/new.json')
+				.success(function(data) {
+					$scope.org = data;
+				});
+		}
 	}	  
 	$scope.load();  
 	
@@ -71,15 +78,42 @@
         };
 
 		$scope.postedpayload = angular.copy(org);
-        if(org.id){
-		    $http.put("/organizations/", org).success(function(resp, status) {
-    			$scope.remoteresponse = status;
-	        })
-        }
-        else{
-            $http.post("/organizations/", org).success(function(resp, status) {
-                $scope.remoteresponse = status;
-            })
+        if (org.id) {
+		    $http.put("/organizations/" + org.id + ".json", org)
+				.success(function(resp, status) {
+					$scope.remoteresponse = status;
+				})
+				.error(function(resp, status) {
+					try {
+						JSON.parse(resp);
+						for (var key in resp) {
+							if (resp.hasOwnProperty(key)) {
+								alert(key + " " + resp[key]);
+							}
+						}
+						$scope.remoteresponse = status;
+					} catch(e) {
+						alert('Error (response not JSON)');
+					}
+				});
+        } else {
+            $http.post("/organizations.json", org)
+				.success(function(resp, status) {
+					$scope.remoteresponse = status;
+				})
+				.error(function(resp, status) {
+					try {
+						JSON.parse(resp);
+						for (var key in resp) {
+							if (resp.hasOwnProperty(key)) {
+								alert(key + " " + resp[key]);
+							}
+						}
+						$scope.remoteresponse = status;
+					} catch(e) {
+						alert('Error (response not JSON)');
+					}
+				});
         }
 	}
 }]);

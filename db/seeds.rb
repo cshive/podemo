@@ -9,7 +9,8 @@
 Organization.create(name: 'MD Anderson', identifier: 'tx035')
 Organization.create(name: 'GBMC', identifier: 'md036')
 
-user = User.new(email: 'test@test.com',
+user = User.new(username: 'tester',
+                email: 'test@test.com',
                 password: 'Welcome01',
                 password_confirmation: 'Welcome01'
                )

@@ -23,6 +23,8 @@
 #  updated_at             :datetime
 #  provider               :string(255)
 #  uid                    :string(255)
+#  username               :string(255)
+#  role                   :string(255)
 #
 # Indexes
 #
@@ -30,6 +32,7 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
+#  index_users_on_username              (username) UNIQUE
 #
 
 class User < ActiveRecord::Base
@@ -38,6 +41,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :trackable, :validatable,
          :confirmable, :lockable, :timeoutable, :omniauthable
+
+  ROLES = %i[ROLE_ADMIN ROLE_CURATOR]
+  validates :username, presence: true, uniqueness: { case_sensitive: false }
+
+  def ldap_before_save
+    self.email = Devise::LDAP::Adapter.get_ldap_param(self.username,"mail").first
+  end
 
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     data = access_token.info
@@ -50,9 +60,10 @@ class User < ActiveRecord::Base
         return registered_user
       else
         user = User.new(provider:access_token.provider,
-                           email: data["email"],
-                           uid: access_token.uid ,
-                           password: Devise.friendly_token[0,20]
+                        username: data["email"],
+                        email: data["email"],
+                        uid: access_token.uid ,
+                        password: Devise.friendly_token[0,20]
         )
         user.skip_confirmation!
         user.save

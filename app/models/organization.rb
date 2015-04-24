@@ -21,5 +21,5 @@ class Organization < ActiveRecord::Base
   # Make organization_type/status object directly accessible from organization
   belongs_to :organization_type
   belongs_to :organization_status
-  validates :name, uniqueness: true
+  validates :name, uniqueness: true, presence: true
 end
