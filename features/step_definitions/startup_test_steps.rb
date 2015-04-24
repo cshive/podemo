@@ -4,10 +4,6 @@ require 'selenium-webdriver'
 
 driver = Selenium::WebDriver.for :chrome
 driver.get "http://localhost:3000"
-<<<<<<< HEAD
-
-=======
->>>>>>> fd6eff34b309971590ae36a108171ffdd3c03c2b
 
 end
 
