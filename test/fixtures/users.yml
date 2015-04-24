@@ -24,6 +24,7 @@
 #  provider               :string(255)
 #  uid                    :string(255)
 #  username               :string(255)
+#  role                   :string(255)
 #
 # Indexes
 #

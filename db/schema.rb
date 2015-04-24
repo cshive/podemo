@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421204752) do
+ActiveRecord::Schema.define(version: 20150423181428) do
 
   create_table "organization_statuses", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20150421204752) do
     t.string   "provider",               limit: 255
     t.string   "uid",                    limit: 255
     t.string   "username",               limit: 255
+    t.string   "role",                   limit: 255
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

@@ -54,3 +54,4 @@ end
 
 gem 'selenium-webdriver'
 gem "devise_ldap_authenticatable"
+gem 'cancancan'

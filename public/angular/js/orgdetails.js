@@ -84,12 +84,17 @@
 					$scope.remoteresponse = status;
 				})
 				.error(function(resp, status) {
-					for (var key in resp) {
-						if (resp.hasOwnProperty(key)) {
-							alert(key + " " + resp[key]);
+					try {
+						JSON.parse(resp);
+						for (var key in resp) {
+							if (resp.hasOwnProperty(key)) {
+								alert(key + " " + resp[key]);
+							}
 						}
+						$scope.remoteresponse = status;
+					} catch(e) {
+						alert('Error (response not JSON)');
 					}
-					$scope.remoteresponse = status;
 				});
         } else {
             $http.post("/organizations.json", org)
@@ -97,12 +102,17 @@
 					$scope.remoteresponse = status;
 				})
 				.error(function(resp, status) {
-					for (var key in resp) {
-						if (resp.hasOwnProperty(key)) {
-							alert(key + " " + resp[key]);
+					try {
+						JSON.parse(resp);
+						for (var key in resp) {
+							if (resp.hasOwnProperty(key)) {
+								alert(key + " " + resp[key]);
+							}
 						}
+						$scope.remoteresponse = status;
+					} catch(e) {
+						alert('Error (response not JSON)');
 					}
-					$scope.remoteresponse = status;
 				});
         }
 	}

@@ -24,6 +24,7 @@
 #  provider               :string(255)
 #  uid                    :string(255)
 #  username               :string(255)
+#  role                   :string(255)
 #
 # Indexes
 #
@@ -41,6 +42,7 @@ class User < ActiveRecord::Base
          :recoverable, :trackable, :validatable,
          :confirmable, :lockable, :timeoutable, :omniauthable
 
+  ROLES = %i[ROLE_ADMIN ROLE_CURATOR]
   validates :username, presence: true, uniqueness: { case_sensitive: false }
 
   def ldap_before_save
