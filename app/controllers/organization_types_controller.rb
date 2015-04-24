@@ -1,6 +1,6 @@
 class OrganizationTypesController < ApplicationController
-  load_and_authorize_resource
   before_action :set_organization_type, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource unless Rails.env.test?
 
   respond_to :html
 
