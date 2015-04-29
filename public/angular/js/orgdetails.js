@@ -84,16 +84,15 @@
 					$scope.remoteresponse = status;
 				})
 				.error(function(resp, status) {
-					try {
-						JSON.parse(resp);
-						for (var key in resp) {
-							if (resp.hasOwnProperty(key)) {
-								alert(key + " " + resp[key]);
+					if (resp.errors) {
+						for (var key in resp.errors) {
+							if (resp.errors.hasOwnProperty(key)) {
+								alert(key + " " + resp.errors[key]);
 							}
 						}
 						$scope.remoteresponse = status;
-					} catch(e) {
-						alert('Error (response not JSON)');
+					} else {
+						alert('Error');
 					}
 				});
         } else {
@@ -102,16 +101,15 @@
 					$scope.remoteresponse = status;
 				})
 				.error(function(resp, status) {
-					try {
-						JSON.parse(resp);
-						for (var key in resp) {
-							if (resp.hasOwnProperty(key)) {
-								alert(key + " " + resp[key]);
+					if (resp.errors) {
+						for (var key in resp.errors) {
+							if (resp.errors.hasOwnProperty(key)) {
+								alert(key + " " + resp.errors[key]);
 							}
 						}
 						$scope.remoteresponse = status;
-					} catch(e) {
-						alert('Error (response not JSON)');
+					} else {
+						alert('Error');
 					}
 				});
         }
