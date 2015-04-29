@@ -3,22 +3,25 @@ class OrganizationsController < ApplicationController
   before_filter :authenticate_user! unless Rails.env.test?
   load_and_authorize_resource unless Rails.env.test?
 
+  respond_to :html, :json
+
   # GET /organizations
   # GET /organizations.json
   def index
     @organizations = Organization.all
+    respond_with(@organization)
   end
 
   # GET /organizations/1
   # GET /organizations/1.json
   def show
+    respond_with(@organization)
   end
 
   # GET /organizations/new
   def new
     @organization = Organization.new
-    respond_to do |format|
-      format.html { render :new }
+    respond_with(@organization) do |format|
       format.json { render :show }
     end
   end
@@ -31,40 +34,22 @@ class OrganizationsController < ApplicationController
   # POST /organizations.json
   def create
     @organization = Organization.new(organization_params)
-
-    respond_to do |format|
-      if @organization.save
-        format.html { redirect_to @organization, notice: 'Organization was successfully created.' }
-        format.json { render :show, status: :created, location: @organization }
-      else
-        format.html { render :new }
-        format.json { render json: @organization.errors, status: :unprocessable_entity }
-      end
-    end
+    @organization.save
+    respond_with(@organization)
   end
 
   # PATCH/PUT /organizations/1
   # PATCH/PUT /organizations/1.json
   def update
-    respond_to do |format|
-      if @organization.update(organization_params)
-        format.html { redirect_to @organization, notice: 'Organization was successfully updated.' }
-        format.json { render :show, status: :ok, location: @organization }
-      else
-        format.html { render :edit }
-        format.json { render json: @organization.errors, status: :unprocessable_entity }
-      end
-    end
+    @organization.update(organization_params)
+    respond_with(@organization)
   end
 
   # DELETE /organizations/1
   # DELETE /organizations/1.json
   def destroy
     @organization.destroy
-    respond_to do |format|
-      format.html { redirect_to organizations_url, notice: 'Organization was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    respond_with(@organization)
   end
 
   def create_from_rest_api
