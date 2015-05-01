@@ -73,6 +73,7 @@ class OrganizationsController < ApplicationController
 
   def search
     @organizations = Organization.with_name(params[:name])
+    @organizations = @organizations.with_ctep_id(params[:ctep_id]) if params[:ctep_id].present?
   end
 
   private

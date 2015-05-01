@@ -1,9 +1,17 @@
 <p id="notice"><%= notice %></p>
 
 <%= form_tag("/organizations/search", method: "get") do %>
-    <%= label_tag(:name, "Name:") %>
-    <%= text_field_tag :name, params[:name] %>
-    <%= submit_tag("Search") %>
+    <div class="field">
+      <%= label_tag(:name, "Name:") %>
+      <%= text_field_tag :name, params[:name] %>
+    </div>
+    <div class="field">
+      <%= label_tag(:ctep_id, "CTEP ID:") %>
+      <%= text_field_tag :ctep_id, params[:ctep_id] %>
+    </div>
+    <div class="actions">
+      <%= submit_tag("Search") %>
+    </div>
 <% end %>
 
 <h1>Search result</h1>
