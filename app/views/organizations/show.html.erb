@@ -25,5 +25,35 @@
   <%= @organization.address1 %>
 </p>
 
+<p>
+  <strong>Address1:</strong>
+  <%= @organization.address2 %>
+</p>
+
+<p>
+  <strong>Address2:</strong>
+  <%= @organization.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @organization.state %>
+</p>
+
+<p>
+  <strong>Postal Code:</strong>
+  <%= @organization.zip_code %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @organization.country %>
+</p>
+
+<p>
+  <strong>CTEP ID:</strong>
+  <%= @organization.ctep_id %>
+</p>
+
 <%= link_to 'Edit', edit_organization_path(@organization) %> |
 <%= link_to 'Back', organizations_path %>

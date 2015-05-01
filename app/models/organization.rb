@@ -10,6 +10,12 @@
 #  address1               :string(255)
 #  organization_type_id   :integer
 #  organization_status_id :integer
+#  address2               :string(255)
+#  city                   :string(255)
+#  state                  :string(255)
+#  zip_code               :integer
+#  country                :string(255)
+#  ctep_id                :string(255)
 #
 # Indexes
 #
