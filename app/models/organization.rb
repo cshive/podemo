@@ -28,4 +28,6 @@ class Organization < ActiveRecord::Base
   belongs_to :organization_type
   belongs_to :organization_status
   validates :name, uniqueness: true, presence: true
+
+  scope :with_name, -> (name) { where("name like ?", "%#{name}%") }
 end

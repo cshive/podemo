@@ -71,6 +71,10 @@ class OrganizationsController < ApplicationController
     redirect_to :back, notice: 'HTTP response status: ' + response.status.to_s
   end
 
+  def search
+    @organizations = Organization.with_name(params[:name])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_organization
