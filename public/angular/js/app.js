@@ -29,3 +29,22 @@ app.controller("OrgCtrl", function($scope, $http, $window) {
 	
 });
 
+app.controller('SearchCtrl', function($scope, $http) {
+	$http.get('/organizations.json')
+		.success(function(data) {
+			$scope.orgs = data
+		})
+		.error(function(data, status) {
+			alert(status)
+		})
+
+	$scope.search = function(search_params) {
+		$http.get('/organizations/search.json?name=' + search_params.name + '&identifier=' + search_params.identifier + '&ctep_id=' + search_params.ctep_id)
+			.success(function(data) {
+				$scope.orgs = data
+			})
+			.error(function(data, status) {
+				alert(status)
+			})
+	}
+});

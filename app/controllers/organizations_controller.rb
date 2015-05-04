@@ -72,8 +72,18 @@ class OrganizationsController < ApplicationController
   end
 
   def search
-    @organizations = Organization.with_name(params[:name])
-    @organizations = @organizations.with_ctep_id(params[:ctep_id]) if params[:ctep_id].present?
+    if request.format == 'json'
+      @organizations = Organization.with_name(params[:name]) if params[:name] != 'undefined'
+      @organizations = @organizations.with_identifier(params[:identifier]) if params[:identifier].present? && params[:identifier] != 'undefined'
+      @organizations = @organizations.with_ctep_id(params[:ctep_id]) if params[:ctep_id].present? && params[:ctep_id] != 'undefined'
+    else
+      @organizations = Organization.with_name(params[:name])
+      @organizations = @organizations.with_identifier(params[:identifier]) if params[:identifier].present?
+      @organizations = @organizations.with_ctep_id(params[:ctep_id]) if params[:ctep_id].present?
+    end
+    respond_with(@organizations) do |format|
+      format.json { render :index }
+    end
   end
 
   private

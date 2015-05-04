@@ -30,5 +30,6 @@ class Organization < ActiveRecord::Base
   validates :name, uniqueness: true, presence: true
 
   scope :with_name, -> (name) { where("name like ?", "%#{name}%") }
+  scope :with_identifier, -> (identifier) { where identifier: identifier }
   scope :with_ctep_id, -> (ctep_id) { where ctep_id: ctep_id }
 end
