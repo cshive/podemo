@@ -72,9 +72,9 @@ class OrganizationsController < ApplicationController
   end
 
   def search
-    @organizations = Organization.with_name(params[:name])
-    @organizations = @organizations.with_identifier(params[:identifier]) if params[:identifier].present?
-    @organizations = @organizations.with_ctep_id(params[:ctep_id]) if params[:ctep_id].present?
+    @organizations = Organization.contains('name', params[:name])
+    @organizations = @organizations.matches('identifier', params[:identifier]) if params[:identifier].present?
+    @organizations = @organizations.matches('ctep_id', params[:ctep_id]) if params[:ctep_id].present?
     respond_with(@organizations) do |format|
       format.json { render :index }
     end

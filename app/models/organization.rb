@@ -29,7 +29,18 @@ class Organization < ActiveRecord::Base
   belongs_to :organization_status
   validates :name, uniqueness: true, presence: true
 
-  scope :with_name, -> (name) { where("name like ?", "%#{name}%") }
-  scope :with_identifier, -> (identifier) { where identifier: identifier }
-  scope :with_ctep_id, -> (ctep_id) { where ctep_id: ctep_id }
+  scope :contains, -> (column, value) { where("#{column} like ?", "%#{value}%") }
+
+  scope :matches, -> (column, value) {
+    str_len = value.length
+    if value[0] == '*' && value[str_len - 1] != '*'
+      where("#{column} like ?", "%#{value[1..str_len - 1]}")
+    elsif value[0] != '*' && value[str_len - 1] == '*'
+      where("#{column} like ?", "#{value[0..str_len - 2]}%")
+    elsif value[0] == '*' && value[str_len - 1] == '*'
+      where("#{column} like ?", "%#{value[1..str_len - 2]}%")
+    else
+      where("#{column} = ?", "#{value}")
+    end
+  }
 end
