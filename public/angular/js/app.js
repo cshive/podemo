@@ -39,6 +39,15 @@ app.controller('SearchCtrl', function($scope, $http) {
 		})
 
 	$scope.search = function(search_params) {
+		if (!search_params.name) {
+			search_params.name = '';
+		}
+		if (!search_params.identifier) {
+			search_params.identifier = '';
+		}
+		if (!search_params.ctep_id) {
+			search_params.ctep_id = '';
+		}
 		$http.get('/organizations/search.json?name=' + search_params.name + '&identifier=' + search_params.identifier + '&ctep_id=' + search_params.ctep_id)
 			.success(function(data) {
 				$scope.orgs = data
