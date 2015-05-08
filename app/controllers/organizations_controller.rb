@@ -9,7 +9,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations.json
   def index
     @organizations = Organization.all
-    respond_with(@organization)
+    respond_with(@organizations)
   end
 
   # GET /organizations/1
