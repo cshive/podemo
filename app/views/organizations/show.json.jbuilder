@@ -5,3 +5,7 @@ end
 json.orgStatuses OrganizationStatus.order(:name) do |organizationStatus|
   json.extract! organizationStatus, :id, :name
 end
+json.countries Country.all do |country|
+  json.name country[0]
+  json.code country[1]
+end
