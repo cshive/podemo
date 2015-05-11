@@ -55,6 +55,7 @@
 			$http.get('/organizations/new.json')
 				.success(function(data) {
 					$scope.org = data;
+					$scope.org.country = 'United States'
 				});
 		}
 	}	  
