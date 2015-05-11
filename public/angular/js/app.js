@@ -7,9 +7,9 @@ var config = {headers: {
 	}
 };	
 app.controller("OrgCtrl", function($scope, $http, $window) {
-  $http.get('/organizations.json').
+  $http.get('/podemo/organizations.json').
     success(function(data, status, headers, config) {
-		$http.get('/organizations.json').
+		$http.get('/podemo/organizations.json').
 		success(function(data, status, headers, config) {
 		//	alert(status)
 			$scope.orgs = data;
@@ -30,7 +30,7 @@ app.controller("OrgCtrl", function($scope, $http, $window) {
 });
 
 app.controller('SearchCtrl', function($scope, $http) {
-	$http.get('/organizations.json')
+	$http.get('/podemo/organizations.json')
 		.success(function(data) {
 			$scope.orgs = data
 		})
@@ -48,7 +48,7 @@ app.controller('SearchCtrl', function($scope, $http) {
 		if (!search_params.ctep_id) {
 			search_params.ctep_id = '';
 		}
-		$http.get('/organizations/search.json?name=' + search_params.name + '&identifier=' + search_params.identifier + '&ctep_id=' + search_params.ctep_id)
+		$http.get('/podemo/organizations/search.json?name=' + search_params.name + '&identifier=' + search_params.identifier + '&ctep_id=' + search_params.ctep_id)
 			.success(function(data) {
 				$scope.orgs = data
 			})

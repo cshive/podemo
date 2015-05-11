@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<%= form_tag("/organizations/search", method: "get") do %>
+<%= form_tag("/podemo/organizations/search", method: "get") do %>
     <div class="field">
       <%= label_tag(:name, "Name:") %>
       <%= text_field_tag :name, params[:name] %>

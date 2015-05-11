@@ -1,17 +1,21 @@
 Rails.application.routes.draw do
-  resources :organization_statuses
+  scope "/podemo" do
 
-  resources :organization_types
+    resources :organization_statuses
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+    resources :organization_types
 
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+    devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
-  resources :organizations do
-    collection do
-      post 'create_from_rest_api'
-      get 'search'
+    mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
+    resources :organizations do
+      collection do
+        post 'create_from_rest_api'
+        get 'search'
+      end
     end
+
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
