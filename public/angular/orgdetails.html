@@ -58,7 +58,11 @@
 	</div>
 	<div>
 		<div class="label">State:</div>
-		<div class="value"><input ng-model="org.state"></div>
+		<div class="value">
+			<select ng-model="org.state" ng-options="state.name as state.name for state in org.states">
+				<option value=""></option>
+			</select>
+		</div>
 	</div>
 	<div>
   	    <div class="label">Postal Code:</div>

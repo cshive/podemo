@@ -15,8 +15,8 @@
 	$scope.selectedOrgType = null;
 	$scope.orgTypes = [];
 	$scope.selectedOrgStatus = null;
-	$scope.orgStatuses = [];	
-    
+	$scope.orgStatuses = [];
+
 	$scope.load = function(){
 /*
 	  $http.get('http://localhost/podemo/orgtypes/').
@@ -59,8 +59,12 @@
 				});
 		}
 	}	  
-	$scope.load();  
-	
+	$scope.load();
+
+		  $scope.$watch('org.country', function(newValue, oldValue) {
+			  getStates(newValue);
+		  });
+
       $scope.update = function(org) {
         $scope.payload = angular.copy(org);
       };
@@ -115,4 +119,14 @@
 				});
         }
 	}
+
+		  function getStates(country) {
+			  if (!country) {
+				  country = '';
+			  }
+			  $http.get('/podemo/organizations/get_states.json?country=' + country)
+				  .success(function(resp, status) {
+					  $scope.org.states = resp.state_list;
+				  });
+		  }
 }]);

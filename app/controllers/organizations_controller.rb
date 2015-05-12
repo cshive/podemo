@@ -71,6 +71,12 @@ class OrganizationsController < ApplicationController
     redirect_to :back, notice: 'HTTP response status: ' + response.status.to_s
   end
 
+  def get_states
+    if params[:country].present?
+      @state_list = Country.find_country_by_name(params[:country]).states
+    end
+  end
+
   def search
     @organizations = Organization.contains('name', params[:name])
     @organizations = @organizations.matches('identifier', params[:identifier]) if params[:identifier].present?
