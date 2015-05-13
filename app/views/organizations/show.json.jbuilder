@@ -9,3 +9,7 @@ json.countries Country.all do |country|
   json.code country[1]
   json.name country[0]
 end
+json.states Country.find_country_by_name(@organization.country).states do |key, value|
+  json.code key
+  json.name value['name']
+end

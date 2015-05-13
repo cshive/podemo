@@ -62,7 +62,9 @@
 	$scope.load();
 
 		  $scope.$watch('org.country', function(newValue, oldValue) {
-			  getStates(newValue);
+			  if (newValue != oldValue) {
+				  getStates(newValue);
+			  }
 		  });
 
       $scope.update = function(org) {
