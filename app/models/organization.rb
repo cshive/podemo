@@ -24,6 +24,8 @@
 #
 
 class Organization < ActiveRecord::Base
+  has_paper_trail
+
   # Make organization_type/status object directly accessible from organization
   belongs_to :organization_type
   belongs_to :organization_status
