@@ -99,7 +99,7 @@
 						}
 						$scope.remoteresponse = status;
 					} else {
-						alert('Error');
+						alert('Error!');
 					}
 				});
         } else {
@@ -116,7 +116,7 @@
 						}
 						$scope.remoteresponse = status;
 					} else {
-						alert('Error');
+						alert('Error!');
 					}
 				});
         }
