@@ -3,7 +3,7 @@ require 'rubygems'
 require 'selenium-webdriver'
 
 driver = Selenium::WebDriver.for :chrome
-driver.get "http://localhost"
+driver.get "http://localhost/"
 
 end
 
