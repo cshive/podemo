@@ -8,4 +8,4 @@ end
 
 Then(/^he should see a failed message$/) do
   fail("Dont worry this is designed to fail")
-end
+  end
