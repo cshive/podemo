@@ -45,6 +45,7 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'rails_admin'
 gem 'ci_reporter_minitest'
+gem 'ci_reporter_cucumber'
 
 group :test do
   gem 'cucumber-rails', :require => false
@@ -55,3 +56,5 @@ end
 gem 'selenium-webdriver'
 gem "devise_ldap_authenticatable"
 gem 'cancancan'
+gem 'countries'
+gem 'paper_trail'

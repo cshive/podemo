@@ -245,7 +245,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   require "omniauth-google-oauth2"
-  config.omniauth :google_oauth2, "209693595832-kilrhc45q6mcrin2tfiildp4ftgej0p2.apps.googleusercontent.com", "CB_WOG1_57CfIlh20ICZ9bid", { access_type: "offline", approval_prompt: "" }
+  config.omniauth :google_oauth2, "854577199956-negn6igsivllfav5rbsnebbgijmc3j52.apps.googleusercontent.com", "mreuJ81Gs9jItII7Eo7EeUHy", { access_type: "offline", approval_prompt: "" }
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

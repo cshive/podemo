@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150423181428) do
+ActiveRecord::Schema.define(version: 20150513151406) do
 
   create_table "organization_statuses", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -35,6 +35,12 @@ ActiveRecord::Schema.define(version: 20150423181428) do
     t.string   "address1",               limit: 255
     t.integer  "organization_type_id"
     t.integer  "organization_status_id"
+    t.string   "address2",               limit: 255
+    t.string   "city",                   limit: 255
+    t.string   "state",                  limit: 255
+    t.integer  "zip_code"
+    t.string   "country",                limit: 255
+    t.string   "ctep_id",                limit: 255
   end
 
   add_index "organizations", ["organization_status_id"], name: "index_organizations_on_organization_status_id"
@@ -70,5 +76,17 @@ ActiveRecord::Schema.define(version: 20150423181428) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   add_index "users", ["username"], name: "index_users_on_username", unique: true
+
+  create_table "versions", force: :cascade do |t|
+    t.string   "item_type",      null: false
+    t.integer  "item_id",        null: false
+    t.string   "event",          null: false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.datetime "created_at"
+    t.text     "object_changes"
+  end
+
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
 
 end

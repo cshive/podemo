@@ -1,14 +1,22 @@
 Rails.application.routes.draw do
-  resources :organization_statuses
+  scope "/podemo" do
 
-  resources :organization_types
+    resources :organization_statuses
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  resources :organizations do
-    collection do
-      post 'create_from_rest_api'
+    resources :organization_types
+
+    devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
+    mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
+    resources :organizations do
+      collection do
+        post 'create_from_rest_api'
+        get 'search'
+        get 'get_states'
+      end
     end
+
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -20,9 +28,9 @@ Rails.application.routes.draw do
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
-  get 'podemo/organizations' => 'organizations#index'
-  put 'organizations' => 'organizations#update'
-  post 'organizations' => 'organizations#create'
+  #get 'podemo/organizations' => 'organizations#index'
+  #put 'organizations' => 'organizations#update'
+  #post 'organizations' => 'organizations#create'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

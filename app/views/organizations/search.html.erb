@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<%= form_tag("/podemo/organizations/search", method: "get") do %>
+    <div class="field">
+      <%= label_tag(:name, "Name:") %>
+      <%= text_field_tag :name, params[:name] %>
+    </div>
+    <div class="field">
+      <%= label_tag(:ctep_id, "CTEP ID:") %>
+      <%= text_field_tag :ctep_id, params[:ctep_id] %>
+    </div>
+    <div class="actions">
+      <%= submit_tag("Search") %>
+    </div>
+<% end %>
+
+<h1>Search result</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Identifier</th>
+    <th>Organization Type</th>
+    <th>Organization Status</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @organizations.each do |organization| %>
+      <tr>
+        <td><%= organization.name %></td>
+        <td><%= organization.identifier %></td>
+        <td><%= organization.organization_type.name if organization.organization_type %></td>
+        <td><%= organization.organization_status.name if organization.organization_status %></td>
+        <td><%= link_to 'Show', organization %></td>
+        <td><%= link_to 'Edit', edit_organization_path(organization) %></td>
+        <td><%= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Organizations', organizations_path  %>

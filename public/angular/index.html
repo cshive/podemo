@@ -2,7 +2,7 @@
   <head>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.7/angular.js"></script>
     <script src="/angular/js/app.js"></script>
-	<link rel="stylesheet" href="/angular/css/app.css"></style>
+	<link rel="stylesheet" href="/angular/css/app.css">
   </head>
 <body>
   <div style="float:left;" ng-app="poDemo" ng-controller="OrgCtrl">
@@ -10,9 +10,9 @@
 	<div ng-if="orgs.length !== 0">
   <div style="float:left;clear:both;">
   <img src="/angular/images/AngularJS-medium.png" />
-  <h3>CTRP Organization List | <a href="/organizations">Back to Rails scaffolding</a></h3>
-</div>	
-	
+  <h3>CTRP Organization List | <a href="/podemo/organizations">Back to Rails scaffolding</a> | <a href="/angular/search.html">Search</a></h3>
+</div>
+
     <div class="container" ng-repeat="org in orgs" ng-class-odd="'odd'" ng-class-even="'even'">
 	<div>
 		  <div class="label">Name:</div>
@@ -25,7 +25,7 @@
 	<div>
 		  <div class="label">ID:</div>
 		  <div class="value">{{org.id}}</div>
-	</div>	
+	</div>
 	<div>
 		<div class="label">Organization Type:</div>
 		<div class="value">{{org.organization_type.name}}</div>
@@ -33,7 +33,7 @@
 	<div>
 		<div class="label">Organization Status:</div>
 		<div class="value">{{org.organization_status.name}}</div>
-	</div>	
+	</div>
 	<div>
     	<div class="label">City:</div>
 		<div class="value">{{org.city}}</div>
@@ -42,7 +42,7 @@
 		<div class="label">State:</div>
 		<div class="value">{{org.state}}</div>
 	</div>
-  <div id="buttonBar">
+  <div>
 	<a href="/angular/orgdetails.html#?id={{org.id}}">View Organization Details</a>
   </div>
    </div>

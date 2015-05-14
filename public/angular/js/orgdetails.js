@@ -15,8 +15,8 @@
 	$scope.selectedOrgType = null;
 	$scope.orgTypes = [];
 	$scope.selectedOrgStatus = null;
-	$scope.orgStatuses = [];	
-    
+	$scope.orgStatuses = [];
+
 	$scope.load = function(){
 /*
 	  $http.get('http://localhost/podemo/orgtypes/').
@@ -35,7 +35,7 @@
 		});		
 */
 		if ($scope.param) {
-			$http.get('/organizations/' + $scope.param + '.json').
+			$http.get('/podemo/organizations/' + $scope.param + '.json').
 				success(function (data, status, headers, config) {
 					$scope.org = data;
 					$scope.selectedOrgType = $scope.org.orgType;
@@ -52,14 +52,21 @@
 					}
 				});
 		} else {
-			$http.get('/organizations/new.json')
+			$http.get('/podemo/organizations/new.json')
 				.success(function(data) {
 					$scope.org = data;
+					$scope.org.country = 'United States'
 				});
 		}
 	}	  
-	$scope.load();  
-	
+	$scope.load();
+
+		  $scope.$watch('org.country', function(newValue, oldValue) {
+			  if (newValue != oldValue) {
+				  getStates(newValue);
+			  }
+		  });
+
       $scope.update = function(org) {
         $scope.payload = angular.copy(org);
       };
@@ -79,41 +86,49 @@
 
 		$scope.postedpayload = angular.copy(org);
         if (org.id) {
-		    $http.put("/organizations/" + org.id + ".json", org)
+		    $http.put("/podemo/organizations/" + org.id + ".json", org)
 				.success(function(resp, status) {
 					$scope.remoteresponse = status;
 				})
 				.error(function(resp, status) {
-					try {
-						JSON.parse(resp);
-						for (var key in resp) {
-							if (resp.hasOwnProperty(key)) {
-								alert(key + " " + resp[key]);
+					if (resp.errors) {
+						for (var key in resp.errors) {
+							if (resp.errors.hasOwnProperty(key)) {
+								alert(key + " " + resp.errors[key]);
 							}
 						}
 						$scope.remoteresponse = status;
-					} catch(e) {
-						alert('Error (response not JSON)');
+					} else {
+						alert('Error!');
 					}
 				});
         } else {
-            $http.post("/organizations.json", org)
+            $http.post("/podemo/organizations.json", org)
 				.success(function(resp, status) {
 					$scope.remoteresponse = status;
 				})
 				.error(function(resp, status) {
-					try {
-						JSON.parse(resp);
-						for (var key in resp) {
-							if (resp.hasOwnProperty(key)) {
-								alert(key + " " + resp[key]);
+					if (resp.errors) {
+						for (var key in resp.errors) {
+							if (resp.errors.hasOwnProperty(key)) {
+								alert(key + " " + resp.errors[key]);
 							}
 						}
 						$scope.remoteresponse = status;
-					} catch(e) {
-						alert('Error (response not JSON)');
+					} else {
+						alert('Error!');
 					}
 				});
         }
 	}
+
+		  function getStates(country) {
+			  if (!country) {
+				  country = '';
+			  }
+			  $http.get('/podemo/organizations/get_states.json?country=' + country)
+				  .success(function(resp, status) {
+					  $scope.org.states = resp.state_list;
+				  });
+		  }
 }]);
