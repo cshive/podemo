@@ -5,6 +5,7 @@ source 'https://ncimvn.nci.nih.gov/nexus/content/repositories/rubygems-org/'
 gem 'rails', '4.2.0'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
+gem 'activerecord-postgresql-adapter'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
