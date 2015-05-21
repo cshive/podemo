@@ -8,4 +8,4 @@ wip: --tags @wip:3 --wip features
 #jenkins: --format junit --OUT ./ -- not sure if needed. cshive
 rerun: <%= rerun_opts %> --format rerun --out rerun.txt --strict --tags ~@wip
 
-smoke: --no-source --format pretty --tags @slow --tags ~@not_ready
+smoke: --no-source --format pretty --tags @smoke --tags ~@not_ready
