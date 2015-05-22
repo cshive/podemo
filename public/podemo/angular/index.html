@@ -1,16 +1,16 @@
 <html>
   <head>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.7/angular.js"></script>
-    <script src="/angular/js/app.js"></script>
-	<link rel="stylesheet" href="/angular/css/app.css">
+    <script src="/podemo/angular/js/app.js"></script>
+	<link rel="stylesheet" href="/podemo/angular/css/app.css">
   </head>
 <body>
   <div style="float:left;" ng-app="poDemo" ng-controller="OrgCtrl">
 
 	<div ng-if="orgs.length !== 0">
   <div style="float:left;clear:both;">
-  <img src="/angular/images/AngularJS-medium.png" />
-  <h3>CTRP Organization List | <a href="/podemo/organizations">Back to Rails scaffolding</a> | <a href="/angular/search.html">Search</a></h3>
+  <img src="/podemo/angular/images/AngularJS-medium.png" />
+  <h3>CTRP Organization List | <a href="/podemo/organizations">Back to Rails scaffolding</a> | <a href="/podemo/angular/search.html">Search</a></h3>
 </div>
 
     <div class="container" ng-repeat="org in orgs" ng-class-odd="'odd'" ng-class-even="'even'">
@@ -43,13 +43,13 @@
 		<div class="value">{{org.state}}</div>
 	</div>
   <div>
-	<a href="/angular/orgdetails.html#?id={{org.id}}">View Organization Details</a>
+	<a href="/podemo/angular/orgdetails.html#?id={{org.id}}">View Organization Details</a>
   </div>
    </div>
   </div>
   </div>
   <div id="buttonBar" style=width:800px;float:left;">
-	<a href="/angular/orgdetails.html">Add New Organization</a>
+	<a href="/podemo/angular/orgdetails.html">Add New Organization</a>
   </div>
 </body>
 </html>

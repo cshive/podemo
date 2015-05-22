@@ -9,8 +9,6 @@ Rails.application.routes.draw do
 
     mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-    get '/angular', :to => redirect('/podemo/angular/')
-
     resources :organizations do
       collection do
         post 'create_from_rest_api'
