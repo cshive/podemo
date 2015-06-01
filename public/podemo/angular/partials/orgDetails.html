@@ -1,86 +1,93 @@
-<div class="row">
-    <div class="panel panel-info">
-        <div class="panel-body">
-            <strong>Name: </strong> {{orgDetailView.orgName}}<br/>
-            <strong>Id: </strong> {{orgDetailView.orgId}}
-        </div>
-    </div>
-</div>
-
-<!--
-<div class="row">
+<div class="row-fluid">
     <form class="form-horizontal" role="form" novalidate>
-        <div>
-            <div class="label">Name:</div>
-            <div class="value"><input type="text" ng-model="org.name" required></div>
+        <div class="form-group">
+            <label class="control-label col-sm-3">Name:</label>
+            <div class="col-sm-9">
+            <input type="text" ng-model="orgDetailView.curOrg.name" required>
+            </div>
         </div>
-        <div>
-            <div class="label">Organization Type:</div>
-            <div class="value">
-                <select ng-model="org.organization_type_id"
-                        ng-options="orgType.id as orgType.name for orgType in org.orgTypes">
+        <div class="form-group">
+            <label class="control-label col-sm-3">Organization Type:</label>
+            <div class="col-sm-9">
+                <select ng-model="orgDetailView.curOrg.organization_type_id"
+                        ng-options="orgType.id as orgType.name for orgType in orgDetailView.curOrg.orgTypes">
                     <option value=""></option>
                 </select>
             </div>
         </div>
-        <div>
-            <div class="label">Organization Status:</div>
-            <div class="value">
-                <select ng-model="org.organization_status_id"
-                        ng-options="orgStatus.id as orgStatus.name for orgStatus in org.orgStatuses">
+        <div class="form-group">
+            <label class="control-label col-sm-3">Organization Status:</label>
+            <div class="col-sm-9">
+                <select ng-model="orgDetailView.curOrg.organization_status_id"
+                        ng-options="orgStatus.id as orgStatus.name for orgStatus in orgDetailView.curOrg.orgStatuses">
                     <option value=""></option>
                 </select>
             </div>
         </div>
-        <div>
-            <div class="label">PO ID:</div>
-            <div class="value"><input type="text" ng-model="org.identifier" required></div>
+        <div class="form-group">
+            <label class="control-label col-sm-3">PO ID:</label>
+            <div class="col-sm-9">
+                <input type="text" ng-model="orgDetailView.curOrg.identifier" required>
+            </div>
         </div>
-        <div>
-            <div class="label">ID:</div>
-            <div class="value"><input type="text" ng-model="org.id"></div>
+        <div class="form-group">
+            <label class="control-label col-sm-3">ID:</label>
+            <div class="col-sm-9">
+                <input type="text" ng-model="orgDetailView.curOrg.id">
+            </div>
         </div>
-        <div>
-            <div class="label">Address1:</div>
-            <div class="value"><input ng-model="org.address1"></div>
+        <div class="form-group">
+            <label class="control-label col-sm-3">Address 1:</label>
+            <div class="col-sm-9">
+                <input ng-model="orgDetailView.curOrg.address1">
+            </div>
         </div>
-        <div>
-            <div class="label">Address2:</div>
-            <div class="value"><input ng-model="org.address2"></div>
+        <div class="form-group">
+            <label class="control-label col-sm-3">Address 2:</label>
+            <div class="col-sm-9">
+                <input ng-model="orgDetailView.curOrg.address2">
+            </div>
         </div>
-        <div>
-            <div class="label">City:</div>
-            <div class="value"><input ng-model="org.city"></div>
+        <div class="form-group">
+            <label class="control-label col-sm-3">City:</label>
+            <div class="col-sm-9">
+                <input ng-model="orgDetailView.curOrg.city">
+            </div>
         </div>
-        <div>
-            <div class="label">State:</div>
-            <div class="value">
-                <select ng-model="org.state" ng-options="state.name as state.name for state in org.states">
+        <div class="form-group">
+            <label class="control-label col-sm-3">State:</label>
+            <div class="col-sm-9">
+                <select ng-model="orgDetailView.curOrg.state" ng-options="state.name as state.name for state in orgDetailView.curOrg.states">
                     <option value=""></option>
                 </select>
             </div>
         </div>
-        <div>
-            <div class="label">Postal Code:</div>
-            <div class="value"><input ng-model="org.zip_code"></div>
+        <div class="form-group">
+            <label class="control-label col-sm-3">Postal Code:</label>
+            <div class="col-sm-9">
+                <input ng-model="orgDetailView.curOrg.zip_code">
+            </div>
         </div>
-        <div>
-            <div class="label">Country:</div>
-            <div class="value">
-                <select ng-model="org.country" ng-options="country.name as country.name for country in org.countries">
+        <div class="form-group">
+            <label class="control-label col-sm-3">Country:</label>
+            <div class="col-sm-9">
+                <select ng-model="orgDetailView.curOrg.country" ng-options="country.name as country.name for country in orgDetailView.curOrg.countries">
                     <option value=""></option>
                 </select>
             </div>
         </div>
-        <div>
-            <div class="label">CTEP ID:</div>
-            <div class="value"><input ng-model="org.ctep_id"></div>
+        <div class="form-group">
+            <label class="control-label col-sm-3">CTEP ID:</label>
+            <div class="col-sm-9">
+                <input ng-model="orgDetailView.curOrg.ctep_id">
+            </div>
         </div>
 
-        <div id="buttonBar" style="float:left;">
-            <br/>
-            <input type="submit" class="button" ng-click="postit(org)" value="Save">
-            <input type="button" class="button" ng-click="reset()" value="Reset">
+        <div id="buttonBar" class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+                <input type="submit" class="btn btn-default" ng-click="" value="Save">
+                <input type="reset" class="btn btn-danger" ng-click="" value="Reset">
+            </div>
         </div>
     </form>
-</div>-->
+</div>

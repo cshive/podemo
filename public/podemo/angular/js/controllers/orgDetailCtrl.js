@@ -16,6 +16,7 @@
 
         vm.orgId = $stateParams.orgId;
         vm.orgName = $stateParams.orgName;
+        vm.curOrg = orgDetailObj.data;
 
         console.log('received orgDetailObj: ' + JSON.stringify(orgDetailObj));
 
