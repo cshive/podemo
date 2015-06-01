@@ -22,5 +22,11 @@ module Podemo
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.action_dispatch.default_headers = {
+        'Access-Control-Allow-Origin' => 'http://localhost:9000',
+        'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",") # or whatever else you would like to allow
+    }
+
   end
 end
