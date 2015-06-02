@@ -13,9 +13,6 @@
     function orgDetailCtrl($stateParams, orgDetailObj) {
 
         var vm = this;
-
-        vm.orgId = $stateParams.orgId;
-        vm.orgName = $stateParams.orgName;
         vm.curOrg = orgDetailObj.data;
 
         console.log('received orgDetailObj: ' + JSON.stringify(orgDetailObj));

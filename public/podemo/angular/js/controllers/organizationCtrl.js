@@ -9,9 +9,9 @@
     angular.module('ctrpApp')
         .controller('organizationCtrl', organizationCtrl);
 
-    organizationCtrl.$inject = ['PromiseService', 'URL_CONFIGS'];
+    organizationCtrl.$inject = ['OrgService'];
 
-    function organizationCtrl(PromiseService, URL_CONFIGS) {
+    function organizationCtrl(OrgService) {
         var vm = this;
 
         vm.orgList = [];
@@ -24,17 +24,17 @@
 
 
 
-        /****************** implementations ******************/
+        /**************************** implementations **************************/
 
         function getAllOrgs() {
-            PromiseService.getData(URL_CONFIGS.ORG_LIST)
+            OrgService.getAllOrgs()
                 .then(function(data) {
                     console.log('received organizations : ' + JSON.stringify(data));
                     vm.orgList = data.data;
                 }).catch(function(err) {
                     console.log('failed to retrieve organizations');
                 });
-        }
+        } //getAllOrgs
 
     }
 

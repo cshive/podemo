@@ -52,12 +52,11 @@
                     templateUrl: 'partials/orgDetails.html',
                     controller: 'orgDetailCtrl as orgDetailView',
                     resolve: {
-                        PromiseService : 'PromiseService',
-                        URL_CONFIGS : 'URL_CONFIGS',
-                        orgDetailObj : function($stateParams, PromiseService, URL_CONFIGS) {
-                            return PromiseService.getData(URL_CONFIGS.AN_ORG + $stateParams.orgId + '.json');
+                        OrgService : 'OrgService',
+                        orgDetailObj : function($stateParams, OrgService) {
+                            return OrgService.getOrgById($stateParams.orgId);
                         }
-                    }
+                    } //resolve the promise and pass it to controller
                 })
 
 
