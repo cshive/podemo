@@ -1,9 +1,10 @@
-Given /^User navigates to provided url$/ do
 require 'rubygems'
 require 'selenium-webdriver'
 
+Given "User navigates to provided url1" do
+
 driver = Selenium::WebDriver.for :firefox
-driver.get "http://localhost:3000"
+driver.get "http://localhost:3000/podemo"
 
 end
 
