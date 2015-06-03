@@ -12,3 +12,4 @@ Then(/^he should see two links$/) do
   puts("This is a test that is purposely designed to pass")
 end
 # Test comment
+
