@@ -1,26 +1,36 @@
-<h2>Log in</h2>
+<h2>Log in as LOCAL or LDAP user</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
+<div>
+  <%= form_for(resource, :as => 'user', url: create_session_path) do %>
+      <fieldset>
+        <legend>Log In</legend>
+        <table>
+          <tr>
+            <td>
+              <%= radio_button_tag 'type', 'LocalUser', :checked => true  %>
+              <%= label_tag(:local_user_type, "Local User") %>
+            </td>
+            <td><%= radio_button_tag 'type', 'LdapUser'  %>
+              <%= label_tag(:ldap_user_type, "LDAP User") %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>LDAP Username or Database Email</label>
+              <input type="text" placeholder="Username or Email" name="user[email]" />
+            </td>
+            <td>
+              <label>LDAP Username </label>
+              <input type="text" placeholder="Username or Email" name="user[username]" />
+            </td>
+            <td>
+              <label>Password</label>
+              <input type="password" placeholder="Password" name="user[password]" />
+              <input type="submit" class="button" value="Log In" />
+            </td>
+          </tr>
+        </table></fieldset>
+  <% end %>
+</div>
 
 <%= render "devise/shared/links" %>

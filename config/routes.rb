@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
     resources :organization_types
 
-    devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+    devise_for :users #, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
     mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
@@ -17,6 +17,14 @@ Rails.application.routes.draw do
         get 'search'
         get 'get_states'
       end
+    end
+
+    devise_for :ldap_users, :local_users, skip: [ :sessions ]
+
+    devise_scope :local_user do
+      get 'sign_in' => 'sessions#new', :as => :new_session
+      post 'sign_in' => 'sessions#create', :as => :create_session
+      delete 'sign_out' => 'sessions#destroy', :as => :destroy_session
     end
 
   end
