@@ -1,7 +1,7 @@
 class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user! unless Rails.env.test?
-  load_and_authorize_resource unless Rails.env.test?
+  # before_filter :authenticate_user! unless Rails.env.test?
+  #load_and_authorize_resource unless Rails.env.test?
 
   respond_to :html, :json
 
