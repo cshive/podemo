@@ -8,7 +8,8 @@
     angular.module('ctrpApp', [
         'ui.router',
         'Constants',
-        'PromiseServiceModule'
+        'PromiseServiceModule',
+        'LocalCacheModule'
     ])
         .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 

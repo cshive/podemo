@@ -8,15 +8,13 @@
     angular.module('ctrpApp')
         .controller('orgDetailCtrl', orgDetailCtrl);
 
-    orgDetailCtrl.$inject = ['$stateParams', 'orgDetailObj'];
+    orgDetailCtrl.$inject = ['$stateParams', 'orgDetailObj', 'LocalCacheService'];
 
-    function orgDetailCtrl($stateParams, orgDetailObj) {
+    function orgDetailCtrl($stateParams, orgDetailObj, LocalCacheService) {
 
         var vm = this;
         vm.curOrg = orgDetailObj.data;
-
-        console.log('received orgDetailObj: ' + JSON.stringify(orgDetailObj));
-
+        // console.log('received orgDetailObj: ' + JSON.stringify(orgDetailObj));
     }
 
 
