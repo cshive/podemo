@@ -1,0 +1,26 @@
+<div class="row-fluid">
+        <table class="table table-bordered table-striped">
+            <thead>
+            <th>Name</th>
+            <th>PO ID</th>
+            <th>ID</th>
+            <th>Organization Type</th>
+            <th>Organization Status</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Operations</th>
+            </thead>
+            <tbody>
+            <tr ng-repeat="org in orgsView.orgList track by $index">
+                <td>{{org.name}}</td>
+                <td>{{org.identifier}}</td>
+                <td>{{org.id}}</td>
+                <td>{{org.organization_type}}</td>
+                <td>{{org.organization_status}}</td>
+                <td>{{org.city}}</td>
+                <td>{{org.state}}</td>
+                <td><a ui-sref="main.orgDetail({orgId : '{{org.id}}', orgName : '{{org.name}}'})">View Details</a></td>
+            </tr>
+            </tbody>
+        </table>
+</div>
