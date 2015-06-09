@@ -37,5 +37,5 @@
 #
 
 class LocalUser < User
-  devise :database_authenticatable, :registerable, :confirmable, :recoverable, :trackable, :omniauthable
+  devise :database_authenticatable, :registerable, :confirmable, :recoverable, :trackable
 end
