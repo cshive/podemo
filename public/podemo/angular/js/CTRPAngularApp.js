@@ -9,7 +9,9 @@
         'ui.router',
         'Constants',
         'PromiseServiceModule',
-        'LocalCacheModule'
+        'LocalCacheModule',
+        'ngAnimate',
+        'toastr'
     ])
         .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 

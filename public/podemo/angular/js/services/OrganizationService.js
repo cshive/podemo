@@ -34,9 +34,21 @@
         } //getOrgById
 
 
-
+        /**
+         * Update or insert a new organization
+         *
+         * @param orgObj
+         * @returns {*}
+         */
         function upsertOrg(orgObj) {
-            //TODO:
+            if (!!orgObj.id) {
+                var configObj = {}; //empty config
+                return PromiseService.updateObj(URL_CONFIGS.AN_ORG + orgObj.id + ".json", orgObj, configObj);
+            }
+
+            //create a new org
+            return PromiseService.postDataExpectObj(URL_CONFIGS.ORG_LIST, orgObj);
+
         } //upsertOrg
     }
 

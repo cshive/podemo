@@ -29,7 +29,7 @@
         function getAllOrgs() {
             OrgService.getAllOrgs()
                 .then(function(data) {
-                    console.log('received organizations : ' + JSON.stringify(data));
+                // console.log('received organizations : ' + JSON.stringify(data));
                     vm.orgList = data.data;
                 }).catch(function(err) {
                     console.log('failed to retrieve organizations');

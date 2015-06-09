@@ -16,7 +16,8 @@
         var services = {
             getData: getData,
             getDataV2: getDataV2,
-            postDataExpectObj: postDataExpectObj
+            postDataExpectObj: postDataExpectObj,
+            updateObj: updateObj
         };
 
         return services;
@@ -55,6 +56,22 @@
         function postDataExpectObj(url, params) {
             return $http.post(url, params);
         }
+
+
+        /**
+         * Perform PUT request to update object
+         *
+         * @param url
+         * @param params
+         * @param configObj
+         * @returns {*}
+         */
+        function updateObj(url, params, configObj) {
+            return $http.put(url, params, configObj);
+        }
+
+
+
 
     }
 
