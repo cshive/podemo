@@ -7,6 +7,7 @@
 #  encrypted_password     :string(255)      default(""), not null
 #  reset_password_token   :string(255)
 #  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
 #  sign_in_count          :integer          default(0), not null
 #  current_sign_in_at     :datetime
 #  last_sign_in_at        :datetime
@@ -42,7 +43,7 @@ class User < ActiveRecord::Base
   #devise  :registerable,
   #       :recoverable, :trackable, :validatable,
    #      :confirmable, :lockable, :timeoutable, :omniauthable
-  devise :confirmable, :lockable, :timeoutable,  :validatable
+  devise  :confirmable, :timeoutable,  :validatable
 
   ROLES = %i[ROLE_ADMIN ROLE_CURATOR]
   validates :username, presence: true, uniqueness: { case_sensitive: false }
@@ -50,7 +51,9 @@ class User < ActiveRecord::Base
   attr_accessor :password
 
   def ldap_before_save
+    Rails.logger.info "Hi in ldap_before_save"
     self.email = Devise::LDAP::Adapter.get_ldap_param(self.username,"mail").first
+    Rails.logger.info "Hi in ldap_before_save email = #{email.inspect}"
   end
 
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)

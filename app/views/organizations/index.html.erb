@@ -1,44 +1,58 @@
-<% if user_signed_in? %>
-    <li><%= link_to 'Edit account', edit_user_registration_path %></li>
-    <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
-<% end %>
-
-<p id="notice"><%= notice %></p>
-
-<h1>Listing organizations | <a href="/podemo/angular/">Jump to Angular view</a></h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Identifier</th>
-      <th>Organization Type</th>
-      <th>Organization Status</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @organizations.each do |organization| %>
-      <tr>
-        <td><%= organization.name %></td>
-        <td><%= organization.identifier %></td>
-        <td><%= organization.organization_type.name if organization.organization_type %></td>
-        <td><%= organization.organization_status.name if organization.organization_status %></td>
-        <td><%= link_to 'Show', organization %></td>
-        <td><%= link_to 'Edit', edit_organization_path(organization) %></td>
-        <td><%= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<!--% if signed_in? %-->
+    <% if ldap_user_signed_in? %>
+        <h3>Current LDAP User is <%= current_ldap_user.username %></h3>
+        <%= link_to 'Sign out', destroy_session_path, :method=>'delete' %>
     <% end %>
-  </tbody>
-</table>
+    <% if omniauth_user_signed_in? %>
+        <h3>Current OmniAuth User is <%= current_omniauth_user %></h3>
+        <%= link_to 'Sign out', destroy_session_path, :method=>'delete' %>
+    <% end %>
+    <% if local_user_signed_in? %>
+        <h3>Current Local User is <%= current_local_user.username %></h3>
+        <li><%= link_to 'Edit account', edit_local_user_registration_path %></li>
+        <li><%= link_to 'Sign out', destroy_session_path, :method=>'delete' %></li>
+    <% end %>
 
-<br>
+    <p id="notice"><%= notice %></p>
 
-<%= link_to 'New Organization', new_organization_path %><br>
-<%= link_to 'New Organization from REST API', create_from_rest_api_organizations_path, :method => :post %>
-<br><br>
-<%= link_to 'Organization Types', organization_types_path  %><br>
-<%= link_to 'Organization Statuses', organization_statuses_path  %>
-<br><br>
-<%= link_to 'Search', search_organizations_path %>
+    <h1>Listing organizations | <a href="/podemo/angular/">Jump to Angular view</a></h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Identifier</th>
+          <th>Organization Type</th>
+          <th>Organization Status</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @organizations.each do |organization| %>
+          <tr>
+            <td><%= organization.name %></td>
+            <td><%= organization.identifier %></td>
+            <td><%= organization.organization_type.name if organization.organization_type %></td>
+            <td><%= organization.organization_status.name if organization.organization_status %></td>
+            <td><%= link_to 'Show', organization %></td>
+            <td><%= link_to 'Edit', edit_organization_path(organization) %></td>
+            <td><%= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+
+    <%= link_to 'New Organization', new_organization_path %><br>
+    <%= link_to 'New Organization from REST API', create_from_rest_api_organizations_path, :method => :post %>
+    <br><br>
+    <%= link_to 'Organization Types', organization_types_path  %><br>
+    <%= link_to 'Organization Statuses', organization_statuses_path  %>
+    <br><br>
+    <%= link_to 'Search', search_organizations_path %>
+<!--% end %-->
+<% if !signed_in? %>
+    <h1> User not signed in</h1>
+<% end %>
