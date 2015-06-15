@@ -31,8 +31,9 @@ class SessionsController < Devise::SessionsController
         set_flash_message(:notice, :signed_in) if is_flashing_format?
         sign_in(resource_name, resource)
         yield resource if block_given?
-        respond_with resource, location: after_sign_in_path_for(resource)
+        #respond_with resource, location: after_sign_in_path_for(resource)
         Rails.logger.info "Result of warden authenticate = #{self.resource.inspect}"
+        respond_with self.resource, :location => organizations_path
       else
         user_class = :ldap_user
         user = User.where(username: request.params['user']["username"])
@@ -53,7 +54,8 @@ class SessionsController < Devise::SessionsController
         # At this point, self.resource is a valid user account.
         Rails.logger.info "#{self.resource.inspect}"
         sign_in(user_class, self.resource)
-        respond_with self.resource, :location => after_sign_in_path_for(self.resource)
+        #respond_with self.resource, :location => after_sign_in_path_for(self.resource)
+        respond_with self.resource, :location => organizations_path
      end
     rescue
       Rails.logger.info "HI ABC rescue"
