@@ -1,6 +1,6 @@
 class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user! unless Rails.env.test?
+  before_filter :wrapper_authenticate_user! unless Rails.env.test?
   load_and_authorize_resource unless Rails.env.test?
 
   respond_to :html, :json
@@ -87,8 +87,8 @@ class OrganizationsController < ApplicationController
   end
 
   # TODO move this method to another location
-  def authenticate_user!
-    Rails.logger.info "Hi In authenticate_user!"
+  def wrapper_authenticate_user!
+    Rails.logger.info "Hi In authenticate_user! session = #{session.inspect}"
     if local_user_signed_in?
       Rails.logger.info "Hi In authenticate_user! local"
       authenticate_local_user!
@@ -97,25 +97,10 @@ class OrganizationsController < ApplicationController
       authenticate_ldap_user!
     else
       Rails.logger.info "Hi In authenticate_user! omniauth"
-      authenticate_omniauth_user!
+      authenticate_user!
     end
   end
-
-  # TODO move this method to another location
-  def current_user
-    Rails.logger.info "Hi In current_user!"
-    if current_local_user
-      Rails.logger.info "Hi In current_local_user!"
-    end
-    if current_ldap_user
-      Rails.logger.info "Hi In current_ldap_user!"
-    end
-    if current_omniauth_user
-      Rails.logger.info "Hi In current_omniauth_user!"
-    end
-    current_local_user or current_ldap_user or current_omniauth_user
-  end
-
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_organization
