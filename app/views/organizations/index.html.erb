@@ -3,8 +3,8 @@
         <h3>Current LDAP User is <%= current_ldap_user.username %></h3>
         <%= link_to 'Sign out', destroy_session_path, :method=>'delete' %>
     <% end %>
-    <% if omniauth_user_signed_in? %>
-        <h3>Current OmniAuth User is <%= current_omniauth_user %></h3>
+    <% if signed_in? && !ldap_user_signed_in? && !local_user_signed_in? %>
+        <h3>Current OmniAuth User is <%= current_user.username %></h3>
         <%= link_to 'Sign out', destroy_session_path, :method=>'delete' %>
     <% end %>
     <% if local_user_signed_in? %>
