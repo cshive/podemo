@@ -45,6 +45,7 @@ gem 'coffee-script-source', '1.8.0'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'jwt'
 gem 'rails_admin'
 gem 'ci_reporter_minitest'
 
