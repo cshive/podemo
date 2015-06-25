@@ -1,6 +1,6 @@
 class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
-  before_filter :wrapper_authenticate_user! unless Rails.env.test?
+  before_filter :wrapper_authenticate_user unless Rails.env.test?
   load_and_authorize_resource unless Rails.env.test?
 
   respond_to :html, :json
@@ -87,26 +87,18 @@ class OrganizationsController < ApplicationController
   end
 
   # TODO move this method to another location
-  def wrapper_authenticate_user!
-    Rails.logger.info "Hi In authenticate_user! session = #{session.inspect}"
-    if local_user_signed_in?
-      Rails.logger.info "Hi In authenticate_user! local"
-      authenticate_local_user!
-    elsif ldap_user_signed_in?
-      Rails.logger.info "Hi In authenticate_user! ldap"
-      authenticate_ldap_user!
-    else
-      Rails.logger.info "Hi In authenticate_user! omniauth"
-      authenticate_user!
-    end
-  end
-  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_organization
       @organization = Organization.find(params[:id])
     end
-
+    # Use callbacks to share common setup or constraints between actions.
+    #def set_current_user
+   #   Rails.logger.info "params = #{params.inspect}"
+    #  Rails.logger.info "current_user = #{current_user.inspect}"
+    #  @current_user = current_user
+    #end
     # Never trust parameters from the scary internet, only allow the white list through.
     def organization_params
       params.require(:organization).permit(:name, :identifier, :organization_type_id, :organization_status_id, :address1, :address2, :city, :state, :zip_code, :country, :ctep_id)
