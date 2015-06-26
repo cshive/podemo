@@ -33,7 +33,16 @@ class SessionsController < Devise::SessionsController
         yield resource if block_given?
         #respond_with resource, location: after_sign_in_path_for(resource)
         Rails.logger.info "Result of warden authenticate = #{self.resource.inspect}"
-        respond_with self.resource, :location => organizations_path
+        token = create_token({:user_id => user.id})
+        Rails.logger.info "Result of warden authenticate JWT token = #{token.inspect}"
+        #Rails.logger.info "SESSION = #{self[:user_id].inspect}"
+        Rails.logger.info "current_local_user = #{current_local_user.inspect}"
+        current_user = current_local_user
+        ## Rendering JSON back to the browser.
+        ## Currently this JSON contains the user_id.
+        ## More fields could be added to the JSON, based on what the UI expects
+        #  render json: { token: token }
+        respond_with self.resource, :location => podemo_path
       else
         user_class = :ldap_user
         user = User.where(username: request.params['user']["username"])
@@ -55,7 +64,9 @@ class SessionsController < Devise::SessionsController
         Rails.logger.info "#{self.resource.inspect}"
         sign_in(user_class, self.resource)
         #respond_with self.resource, :location => after_sign_in_path_for(self.resource)
-        respond_with self.resource, :location => organizations_path
+        # TODO REMOVE !!!
+        #  render json: { token: create_token(user) }
+        respond_with self.resource, :location => podemo_path
      end
     rescue
       Rails.logger.info "HI ABC rescue"
@@ -83,5 +94,13 @@ class SessionsController < Devise::SessionsController
     # Set up a blank resource for the view rendering
     #Rails.logger.info "#{self.inspect}"
     self.resource = User.new
-    end
+  end
+
+  private
+
+  def create_token(user)
+    secret = "secret" # must be an environment variable
+    JWT.encode(user, secret)
+  end
+  #- See more at: http://blog.moove-it.com/token-based-authentication-json-web-tokenjwt/#sthash.QlxioFfO.dpuf
 end

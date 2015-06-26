@@ -24,7 +24,8 @@ class ApplicationController < ActionController::Base
   end
 
   def wrapper_authenticate_user
-    Rails.logger.info "Hi In authenticate_user!!! params = #{params.inspect}"
+    Rails.logger.info "Hi In authenticate_user!!! params = #{params.inspect} USER_ID = #{session[:user_id]}"
+
     #token = params["token"]
     #decoded_token = JWT.decode token, "secret"
     #Rails.logger.info decoded_token
@@ -38,8 +39,11 @@ class ApplicationController < ActionController::Base
       Rails.logger.info "Hi In authenticate_user! omniauth"
       authenticate_user!
     end
+    Rails.logger.info "Hi In authenticate_user!!! params = #{params.inspect} USER_ID = #{session[:user_id]}"
   end
 =begin
+# DECODE the token and get the JWT user id. Check is the user is valid by checking the DB. If the user exists, the current_user method
+# will return the User found in the database. After implementing this logic, we can override the "current_user" method
   def current_user
      Rails.logger.info "Hi In current_user! session = #{session.inspect}"
     token = params["token"]
@@ -59,6 +63,49 @@ class ApplicationController < ActionController::Base
      #current_local_user or current_ldap_user or current_omniauth_user
      end
 =end
+=begin
+  def after_sign_in_path_for(resource_or_scope)
+    Rails.logger.info "HIII IN AFTER"
+    if current_local_user
+      session[:user_id] = current_local_user.id
+    elsif current_ldap_user
+      session[:user_id] = current_ldap_user.id
+    else
+      session[:user_id]  = current_user.id
+    end
+  end
+
+  def test_user
+    Rails.logger.info "HIII IN test_user"
+    Rails.logger.info "Hi In test_user USER_ID = #{session[:user_id]}"
+
+
+  end
+=end
+  def get_user
+    Rails.logger.info "HIII IN test_user"
+    Rails.logger.info "Hi In test_user USER_ID = #{session["@app"].inspect}"
+    if current_local_user
+      @user_id = current_local_user.id
+      @current_user = current_local_user
+    elsif current_ldap_user
+      @user_id = current_ldap_user.id
+      @current_user = current_ldap_user
+    else
+      Rails.logger.info "#{current_omniauth_user.inspect}"
+      Rails.logger.info "#{current_user.inspect}"
+      @user_id = current_user.id
+    end
+    @current_user = User.find_by_id(@user_id)
+  end
+
+  def get_current_user
+    Rails.logger.info "HIII get_current_user"
+    return @current_user ||   User.find_by_id(@user_id)
+  end
+
+
+
   protected
 
   def configure_permitted_parameters
@@ -76,4 +123,5 @@ class ApplicationController < ActionController::Base
       super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
     end
   end
+
 end

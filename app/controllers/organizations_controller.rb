@@ -1,6 +1,7 @@
 class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
   before_filter :wrapper_authenticate_user unless Rails.env.test?
+  before_filter :get_user unless Rails.env.test?
   load_and_authorize_resource unless Rails.env.test?
 
   respond_to :html, :json
@@ -85,9 +86,12 @@ class OrganizationsController < ApplicationController
       format.json { render :index }
     end
   end
-
-  # TODO move this method to another location
-
+=begin
+  # TODO ## Analyze this
+  def current_user
+    get_current_user
+  end
+=end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_organization
