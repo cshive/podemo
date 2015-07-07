@@ -1,14 +1,14 @@
-require 'rubygems'
-require 'selenium-webdriver'
+#require 'rubygems'
+#require 'selenium-webdriver'
 
-Given "User navigates to provided url1" do
+Given "User navigates to provided url11" do
 
-driver = Selenium::WebDriver.for :firefox
-driver.get "http://localhost:3000/podemo"
+driver1 = Selenium::WebDriver.for :chrome
+driver1.get "http://localhost:3000/podemo"
 
 end
 
-Then(/^he should see two links$/) do
+Then(/^he should see two links1$/) do
   puts("This is a test that is purposely designed to pass")
 end
 # Test comment
