@@ -78,6 +78,7 @@ class OrganizationsController < ApplicationController
   end
 
   def search
+    # Test comment
     @organizations = Organization.contains('name', params[:name])
     @organizations = @organizations.matches('identifier', params[:identifier]) if params[:identifier].present?
     @organizations = @organizations.matches('ctep_id', params[:ctep_id]) if params[:ctep_id].present?
