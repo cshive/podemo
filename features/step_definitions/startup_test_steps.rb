@@ -3,8 +3,8 @@
 
 Given "User navigates to provided url11" do
 
-driver1 = Selenium::WebDriver.for :chrome
-driver1.get "http://localhost:3000/podemo"
+driver1 = Selenium::WebDriver.for :firefox
+driver1.get "http://localhost/podemo/angular/#/main/welcome"
 
 end
 
