@@ -1,6 +1,6 @@
 #require 'rubygems'
 #require 'selenium-webdriver'
-driver1 = Selenium::WebDriver.for :firefox
+driver1 = Selenium::WebDriver.for :chrome
 
 Given "User navigates to provided url11" do
 
