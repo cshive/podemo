@@ -34,3 +34,4 @@ exports.config = {
         format: 'pretty' // or summary
     }
 };
+// Build test
