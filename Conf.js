@@ -30,7 +30,7 @@ exports.config = {
     },
 
     cucumberOpts: {
-        require: 'features/step_definitons/test1.js',
+        //require: 'features/step_definitons/test6.js',
         format: 'pretty' // or summary
     }
 };
