@@ -22,7 +22,7 @@ exports.config = {
    framework: 'cucumber',
 
     specs: [
-        'features/test1.feature'
+        'features/*.feature'
     ],
 
     jasmineNodeOpts: {
@@ -31,6 +31,11 @@ exports.config = {
 
     cucumberOpts: {
         //require: 'features/step_definitons/test6.js',
-        format: 'pretty' // or summary
-    }
+        format: 'pretty',
+       tags: '@smoke'
+       /*     "@runThat",
+            "~@ignoreThis"]*/// or summary
+    },
+
+    resultJsonOutputFile: 'report.json'
 };

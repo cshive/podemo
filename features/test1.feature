@@ -1,3 +1,4 @@
+@smoke
 Feature: Homepage
   As a user
   I want to visit the homepage

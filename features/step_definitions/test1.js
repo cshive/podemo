@@ -16,6 +16,7 @@ module.exports = function() {
           browser.get('http://localhost/podemo/angular/#/main/welcome');
        // browser.get(this, 'http://localhost:3000/ctrp/angular#/main/organizations', function (result) {
             //  next();
+        browser.waitForAngular();
             setTimeout(callback, 1000);
       //  });
     });
@@ -27,6 +28,7 @@ module.exports = function() {
         expect(text).to.contain("" + "wild");*/
       //  expect('foo').to.exist;
        // expect(element(by.binding('person.name')).isPresent()).to.become(true);
+        browser.waitForAngular();
         expect(element(by.linkText("Organizations")).isPresent()).to.become(true);
       //  console.log(element(by.linkText("Organizations")));
        //expect(element(by.linkText("Organizations")).to.exist);
@@ -35,6 +37,7 @@ module.exports = function() {
       //  expect(browser.getTitle()).to.eventually.equal('Search').and.notify(callback);
       //  expect(browser.getTitle()).toEqual('Search');
    //     expect('foobar').to.have.string('bar12');
+        browser.waitForAngular();
         element(by.linkText("Organizations")).click();
        setTimeout(callback, 1000);
    //     element(by.linkText("List of Organizations")).click();
@@ -52,7 +55,9 @@ module.exports = function() {
 
     this.Then(/^I should see "([^"]*)" on page$/, function (callback) {
         // Write code here that turns the phrase above into concrete actions
+        browser.waitForAngular();
         expect(element(by.linkText("Organizations")).isPresent()).to.become(false);
+        browser.waitForAngular();
         element(by.linkText("Home")).click();
       //  element(by.linkText("List of Organizations")).click();
       //  element(by.model('orgsView.searchParams.name')).sendKeys('university*');
