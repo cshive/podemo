@@ -23,7 +23,7 @@ exports.config = {
 
     onPrepare: function() {
         jasmine.getEnv().addReporter(reporter);
-    }
+    },
 
     jasmineNodeOpts: {
         onComplete: null,
