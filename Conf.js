@@ -37,5 +37,5 @@ exports.config = {
             "~@ignoreThis"]*/// or summary
     },
 
-    resultJsonOutputFile: 'report.json'
+    resultJsonOutputFile: 'test/reports/cuke-report.json'
 };

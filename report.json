@@ -1,0 +1,29 @@
+[
+  {
+    "description": "Visit Homepage",
+    "assertions": [
+      {
+        "passed": true
+      },
+      {
+        "passed": true
+      },
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1015756506
+  },
+  {
+    "description": "Visit Homepages",
+    "assertions": [
+      {
+        "passed": true
+      },
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1008515082
+  }
+]

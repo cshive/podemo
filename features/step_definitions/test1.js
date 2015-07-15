@@ -16,8 +16,9 @@ module.exports = function() {
           browser.get('http://localhost/podemo/angular/#/main/welcome');
        // browser.get(this, 'http://localhost:3000/ctrp/angular#/main/organizations', function (result) {
             //  next();
-        browser.waitForAngular();
+        //browser.waitForAngular();
             setTimeout(callback, 1000);
+    //    callback();
       //  });
     });
 
@@ -39,7 +40,7 @@ module.exports = function() {
    //     expect('foobar').to.have.string('bar12');
         browser.waitForAngular();
         element(by.linkText("Organizations")).click();
-       setTimeout(callback, 1000);
+    //   setTimeout(callback, 1000);
    //     element(by.linkText("List of Organizations")).click();
     //    setTimeout(callback, 1000);
     //    element(by.linkText("Add an Organization")).click();
@@ -49,21 +50,22 @@ module.exports = function() {
       //  findElement(By.linkText("Test Search"));
      //   setTimeout(callback, 100000);
      //  element(by.buttonText("Clear")).click();
-        //callback;
+        callback;
     });
 
 
     this.Then(/^I should see "([^"]*)" on page$/, function (callback) {
         // Write code here that turns the phrase above into concrete actions
         browser.waitForAngular();
-        expect(element(by.linkText("Organizations")).isPresent()).to.become(false);
+        expect(element(by.linkText("Organizations12")).isPresent()).to.become(false);
         browser.waitForAngular();
         element(by.linkText("Home")).click();
       //  element(by.linkText("List of Organizations")).click();
       //  element(by.model('orgsView.searchParams.name')).sendKeys('university*');
       //  element(by.buttonText("Clear")).click();
-        //callback;
+        callback;
        // setTimeout(callback, 10000);
+       // browser.sleep(5000);
        // callback.pending();
     });
 
